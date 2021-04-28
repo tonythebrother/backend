@@ -14,7 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return cliente::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new cliente();
+        $cliente->nombre = $request->input('nombre');
+        $cliente->save();
+
+        return 200;
     }
 
     /**
@@ -78,8 +82,12 @@ class ClienteController extends Controller
      * @param  \App\Models\cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cliente $cliente)
+    public function destroy($id)
     {
-        //
+        $cliente = cliente::findOrfail($id);
+        $cliente->delete();
+        
+        return 200;
+        
     }
 }

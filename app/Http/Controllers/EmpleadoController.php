@@ -14,7 +14,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        return empleado::all();
     }
 
     /**
@@ -35,7 +35,21 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empleados = empleado::all();
+
+        $result = false;
+
+        foreach ($empleados as $empleado) {
+            
+            if ($empleado->email == $request->input('email') && $empleado->password = $request->input('password')) {
+                
+                $result = true;
+
+            }
+            
+        }
+
+        return $result;
     }
 
     /**
@@ -46,7 +60,6 @@ class EmpleadoController extends Controller
      */
     public function show(empleado $empleado)
     {
-        //
     }
 
     /**
