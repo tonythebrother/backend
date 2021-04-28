@@ -6,6 +6,7 @@
         :rules="nameRules"
         label="Name"
         required
+        class="mb-5"
       ></v-text-field>
 
       <v-btn color="success" class="mr-4" @click="addClient">
@@ -14,7 +15,7 @@
     </v-form>
     <v-list three-line>
       <template v-for="(item, index) in items">
-        <v-list-item :key="index">
+        <v-list-item :key="item.id">
           <v-list-item-avatar>
             <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
           </v-list-item-avatar>
@@ -24,6 +25,11 @@
               item.nombre
             }}</v-list-item-title>
           </v-list-item-content>
+
+          <v-btn class="red" @click="deleteClient(item.id, index)">
+            Delete
+          </v-btn>
+
         </v-list-item>
       </template>
     </v-list>
@@ -54,6 +60,11 @@ export default {
             .catch(err => console.error(err));
         }
     },
+    deleteClient(id) {
+      axios.delete(this.url + '/' + id).then(response => {
+          this.items.splice(id, 1);
+      })
+    }
   },
   mounted() {
     axios

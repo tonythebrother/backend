@@ -4,17 +4,17 @@ window.Vue = require('vue').default;
 
 const VueRouter = require('vue-router').default;
 const Vuetify = require('vuetify');
-require("vuetify/dist/vuetify.min.css");
-require('material-design-icons-iconfont/dist/material-design-icons.css');
+import "vuetify/dist/vuetify.min.css";
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
 
-const Login = require('./components/LoginForm.vue');
-const Home = require('./components/Home.vue');
-const Billing = require('./components/Billing.vue');
-const Clients = require('./components/Clients.vue');
-const Config = require('./components/Configuration.vue');
+import Login from './components/LoginForm.vue';
+import Home from './components/Home.vue';
+import Billing from './components/Billing.vue';
+import Clients from './components/Clients.vue';
+import Config from './components/Configuration.vue';
 
 const routes = [
     { path: '/', component: Login },
