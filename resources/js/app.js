@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
 const VueRouter = require('vue-router').default;
 const Vuetify = require('vuetify');
 require('vuetify/dist/vuetify.min.css');
