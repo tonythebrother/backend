@@ -4,15 +4,17 @@ window.Vue = require('vue').default;
 
 const VueRouter = require('vue-router').default;
 const Vuetify = require('vuetify');
-import "vuetify/dist/vuetify.min.css";
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+require("vuetify/dist/vuetify.min.css");
+require('material-design-icons-iconfont/dist/material-design-icons.css');
 
 Vue.use(VueRouter);
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-import Login from './components/LoginForm.vue'
-import Home from './components/Home.vue'
-import Billing from './components/Billing.vue'
+const Login = require('./components/LoginForm.vue');
+const Home = require('./components/Home.vue');
+const Billing = require('./components/Billing.vue');
+const Clients = require('./components/Clients.vue');
+const Config = require('./components/Configuration.vue');
 
 const routes = [
     { path: '/', component: Login },
@@ -21,6 +23,8 @@ const routes = [
       component: Home,
       children: [
         { path: '/billing', component: Billing },
+        { path: '/clients', component: Clients },
+        { path: '/configuration', component: Config }
       ]
     },
 ]
@@ -34,7 +38,7 @@ const router = new VueRouter({
 
 Vue.component('App', require('./App.vue').default);
 
-const app = new Vue({
+new Vue({
     router,
     vuetify: new Vuetify(),
     el: '#app',

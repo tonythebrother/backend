@@ -39,7 +39,9 @@ class ClienteController extends Controller
         $cliente->nombre = $request->input('nombre');
         $cliente->save();
 
-        return 200;
+        $newCliente = cliente::all();
+
+        return $newCliente->last();
     }
 
     /**

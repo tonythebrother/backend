@@ -56,8 +56,11 @@ export default {
           email: this.email,
           password: this.pass
         }).then(response => {
-          window.localStorage.setItem("isOnline", true);
+          if (response.data !== "" || response.data !== undefined) {
+            window.localStorage.setItem("isOnline", true);
           window.localStorage.setItem("email", response.data);
+          }
+          else alert('Usuario no encontrado');
         }).catch(err => console.log(err))
         .finally(() => this.$router.push("/billing"));        
         

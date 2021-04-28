@@ -55,6 +55,8 @@ export default {
     email: localStorage.getItem("email"),
     items: [
       { title: "Billing", icon: "mdi-printer", to: 'billing'},
+      { title: "Clients", icon: "mdi-user", to: 'clients'},
+      { title: "Configuration", icon: 'mdi-config', to: 'configuration'}
     ],
   }),
   methods: {
