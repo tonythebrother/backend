@@ -4,7 +4,8 @@ window.Vue = require('vue').default;
 
 const VueRouter = require('vue-router').default;
 const Vuetify = require('vuetify');
-require('vuetify/dist/vuetify.min.css');
+import "vuetify/dist/vuetify.min.css";
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(VueRouter);
 Vue.use(Vuetify)
@@ -19,17 +20,17 @@ const routes = [
       path: '/home',
       component: Home,
       children: [
-        { path: 'billing', component: Billing },
+        { path: '/billing', component: Billing },
       ]
     },
-  ]
-  
+]
+
   // eslint-disable-next-line no-new
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
-  })
+})
 
 Vue.component('App', require('./App.vue').default);
 

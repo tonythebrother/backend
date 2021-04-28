@@ -7,9 +7,9 @@
           <v-col cols="4">
             <v-select
               v-model="select"
-              :items="items.description"
               :rules="[(v) => !!v || 'Item is required']"
               label="Item"
+              :items="products.name"
               required
             ></v-select>
           </v-col>
@@ -83,16 +83,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  data: () => ({
+   data: () => ({
     select: null,
-    items: {
-      description: ["Papa LB.", "Platano Und.", "Salami Und.", "Aceite Galón"],
-      prices: [25.0, 15.0, 85.0, 60.0],
-    },
     quantity: null,
     quantRules: [(v) => !!v || "Quantity is required"],
     list: [],
+    products: {
+      id:[],
+      name: [],
+      price: []
+    },
     numItems: 0,
   }),
 
@@ -126,12 +129,26 @@ export default {
       }
     },
     getPrice() {
-      const index = this.items.description.indexOf(this.select);
-      return this.items.prices[index];
+      const index = this.products.name.indexOf(this.select);
+      return this.products.price[index];
     },
     print() {
       window.print();
     },
   },
+  beforeMount(){
+    axios.get('/api/productos')
+    .then(response => {
+
+      for (let i = 0; i < response.data.length; i++) {
+        const item = response.data[i];
+        this.products.id.push(item.id);
+        this.products.name.push(item.nombre);
+        this.products.price.push(item.precio);
+      }
+
+    })
+    .catch(err => console.error(err));
+  }
 };
 </script>

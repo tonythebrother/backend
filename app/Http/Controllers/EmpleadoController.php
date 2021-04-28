@@ -37,13 +37,13 @@ class EmpleadoController extends Controller
     {
         $empleados = empleado::all();
 
-        $result = false;
+        $result = "";
 
         foreach ($empleados as $empleado) {
             
             if ($empleado->email == $request->input('email') && $empleado->password = $request->input('password')) {
                 
-                $result = true;
+                $result = $empleado->email;
 
             }
             

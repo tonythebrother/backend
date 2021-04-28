@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col>
-        <v-card class="pa-5 rounded-lg">
+    <v-row justify-lg="center" class="pt-5 text-center">
+      <v-col cols="6">
+        <v-card elevation="10" class="pa-5 rounded-lg">
           <v-form ref="form" lazy-validation>
             <h1>Log In</h1>
 
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: () => ({
     pass: "",
@@ -50,14 +52,20 @@ export default {
   methods: {
     logIn() {
       if (this.$refs.form.validate()) {
-        window.localStorage.setItem("isOnline", true);
-        window.localStorage.setItem("email", this.email);
-        this.$router.push("/home");
+        axios.post('/api/empleado', {
+          email: this.email,
+          password: this.pass
+        }).then(response => {
+          window.localStorage.setItem("isOnline", true);
+          window.localStorage.setItem("email", response.data);
+        }).catch(err => console.log(err))
+        .finally(() => this.$router.push("/billing"));        
+        
       }
     },
   },
   mounted() {
-    if (this.isOnline) this.$router.push("/home");
+    if (this.isOnline) this.$router.push("/billing");
   },
 };
 </script>
