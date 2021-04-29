@@ -35,21 +35,29 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $empleados = empleado::all();
+        $result = "Failed";
 
-        $result = "";
+        if ($request->input('issignin') == 'true') {
+            $newEmpleado = new empleado();
+            $newEmpleado->email = $request->input('email');
+            $newEmpleado->password = $request->input('password');
+            $newEmpleado->save();
+        }
+
+        $empleados = empleado::all();
 
         foreach ($empleados as $empleado) {
             
             if ($empleado->email == $request->input('email') && $empleado->password = $request->input('password')) {
                 
                 $result = $empleado->email;
-
             }
             
         }
 
-        return $result;
+      
+
+      return $result;
     }
 
     /**
